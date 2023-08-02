@@ -13,7 +13,7 @@
 
           <div v-for="(option, index) in question.options">
 
-            <button class="p-3 bg-stone-300 rounded w-full m-2 hover:bg-stone-400" @click="answer(option, index)"
+            <button class="p-3 bg-stone-300 rounded w-full m-2 hover:bg-blue-500" @click="answer(option, index)"
               :disabled="isDisabled" :class="{ 'btn-disabled': isDisabled }">
               {{ option }}
             </button>
