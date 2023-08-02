@@ -1,17 +1,20 @@
 <template>
+  <h1>Fun Quiz</h1>
   <div class="max-w-3xl mx-auto bg-slate-50 p-6 rounded-lg shadow-lg">
-    <h1>Quiz</h1>
-    <p>Question {{ questionIndex + 1  }} / {{ questions.length }}</p>
-    <p class="pb-8">Score: {{ score }} / {{ questions.length }}</p>
+    
+    <Tracker :questionIndex="questionIndex" :totalQuestions="questions.length" />
+    <Score :totalQuestions="questions.length" :score="score" :questionIndex="questionIndex" />
+    
     <div v-if="visible.question">
-      
+
       <div v-for="question, index in questions">
         <template v-if="questionIndex === index">
           <p class="text-2xl pb-4">{{ question.text }}</p>
 
           <div v-for="(option, index) in question.options">
 
-            <button class="p-3 bg-stone-300 rounded w-full m-2 hover:bg-stone-400" @click="answer(option, index)" :disabled="isDisabled" :class="{ 'btn-disabled': isDisabled }">
+            <button class="p-3 bg-stone-300 rounded w-full m-2 hover:bg-stone-400" @click="answer(option, index)"
+              :disabled="isDisabled" :class="{ 'btn-disabled': isDisabled }">
               {{ option }}
             </button>
 
@@ -26,11 +29,12 @@
 
       <p v-show="visible.correct" class="text-green-600 font-bold text-3xl pl-2 m-2">Correct!</p>
       <p v-show="visible.wrong" class="text-red-600 font-bold text-3xl pl-2 m-2">Wrong!</p>
-    
+
     </div>
 
     <div v-show="visible.result">
-      <p class="font-bold text-3xl pl-8 m-2">You got {{ score }} out of {{ questions.length }}</p>
+      
+      <result :totalQuestions="questions.length" :score="score" />
     </div>
 
     <div class="flex justify-center">
@@ -38,8 +42,8 @@
         class="bg-green-600 p-2 rounded m-2 text-white w-1/2 hover:bg-green-700 mt-6 w-50 text-center">Next</button>
 
     </div>
-    <p>Question {{ questionIndex + 1 }} / {{ questions.length }}</p>
-    <p>Score: {{ score }} / {{ questions.length }}</p>
+    <Tracker :questionIndex="questionIndex" :totalQuestions="questions.length" />
+    <Score :totalQuestions="questions.length" :score="score" :questionIndex="questionIndex" />
   </div>
 </template>
 
@@ -126,13 +130,12 @@ const totalQuestions = computed(() => questions.length);
 </script>
 
 <style scoped>
-  button {
-    cursor: pointer;
-  }
+button {
+  cursor: pointer;
+}
 
-  .btn-disabled {
-    cursor: not-allowed;
-  }
-
+.btn-disabled {
+  cursor: not-allowed;
+}
 </style>
 
