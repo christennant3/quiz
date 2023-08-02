@@ -1,10 +1,10 @@
 <template>
   <h1>Fun Quiz</h1>
-  <div class="max-w-3xl mx-auto bg-slate-50 p-6 rounded-lg shadow-lg">
+  <div class="max-w-3xl mx-auto bg-slate-100 p-6 rounded-lg shadow-lg">
     
     <Tracker :questionIndex="questionIndex" :totalQuestions="questions.length" />
     <Score :totalQuestions="questions.length" :score="score" :questionIndex="questionIndex" />
-    
+
     <div v-if="visible.question">
 
       <div v-for="question, index in questions">
